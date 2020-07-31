@@ -58,8 +58,7 @@ html {
 body {
   // font-size: 1.6rem;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Inter', sans-serif;
   background: url("./images/pattern-curve.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -91,7 +90,13 @@ body {
     position: relative;
   }
 
-  @include respond(tab-land) {
+  @include respond(tab-port){
+      padding: 3.5rem 10rem;
+      margin: 2rem;
+    }
+    
+    @include respond(tab-land) {
+    padding: 3.5rem;
     width: 80vw;
   }
 
@@ -106,13 +111,15 @@ body {
     position: relative;
 
     height: 60vh;
-
+    max-width: 350px;
+    
     @include respond(tab-port) {
+        max-width: unset;
       --padding: 5rem;
       position: absolute;
-      top: 50%;
-      right: 0;
-      height: 75vh;
+      top: 37.5%;
+      right: calc(100vw - 100% - 37rem);
+      height: 85vh;
       // width: 100vh;
       transform: translateY(-50%);
     }
@@ -145,6 +152,12 @@ body {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, calc(50% - var(--padding)));
+    
+    @include respond(tab-port){
+        max-width: 125px;
+        padding: 2.125rem 3rem;
+        left: 30%;
+    }
   }
 
   &__summary {
@@ -156,9 +169,17 @@ body {
     position: relative;
 
     @include respond(tab-port) {
-      width: 59.5%;
-      justify-content: flex-end;
-      align-items: flex-start;
+        width: 85%;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    
+    @include respond(tab-land){
+        width: 65%;
+    }
+
+    @include respond(big-desktop){
+        width: 59.5%;
     }
 
     &::after {
@@ -184,9 +205,10 @@ body {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     position: relative;
-
+    
     @include respond(tab-port){
         text-align: left;
+        font-size: 3.25rem;
     }
     @include respond(tab-land) {
       font-size: 3.5rem;
@@ -217,6 +239,7 @@ body {
 
   &__position {
     font-weight: 400;
+    font-size: 2rem;
     color: var(--gray-blue);
 
     @include respond(tab-port) {
