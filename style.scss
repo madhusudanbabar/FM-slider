@@ -1,126 +1,244 @@
 *,
 *::after,
-*::before{
-    padding: 0;
-    margin: 0;
-    box-sizing: inherit;
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
 }
 
-:root{
-    --gray-blue: hsl(240, 18%, 77%);
-    --dark-blue: hsl(240, 38%, 20%);
+:root {
+  --gray-blue: hsl(240, 18%, 77%);
+  --dark-blue: hsl(240, 38%, 20%);
 }
 
-html{
-    font-size: 62.5%;
-    height: 100%;
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (min-width: 37.5em) {
+      @content;
+    } // 600 px = 37.5em
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (min-width: 56.2em) {
+      @content;
+    } // 900 px = 56.2em
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (min-width: 75em) {
+      @content;
+    } // 1200 px = 75em
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } // 1800 px = 112em
+  }
 }
 
-body{
-    font-size: 1.6rem;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    height: 100%;
-    background: url("./images/pattern-curve.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom;
+html {
+  height: 100%;
+  font-size: 42%;
 
-    display: flex;
-    align-items: center;
+  @include respond(phone) {
+    font-size: 42%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
+}
+
+body {
+  // font-size: 1.6rem;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: url("./images/pattern-curve.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin: 5rem auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100%;
+
+  @include respond(tab-port) {
     justify-content: center;
-    flex-direction: column;
+  }
 }
 
-.testi{
-    --padding: 2.8rem;
+.testi {
+  --padding: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3.5rem;
+  // margin: 5rem 1rem;
+
+  @include respond(tab-port) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  @include respond(tab-land) {
+    width: 80vw;
+  }
+
+  &__img-box {
+    background: url("./images/pattern-bg.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    padding: var(--padding);
+    margin-bottom: 5rem;
+    position: relative;
+
+    height: 60vh;
+
+    @include respond(tab-port) {
+      --padding: 5rem;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      height: 75vh;
+      // width: 100vh;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0.5rem;
+    animation: slideIn 2s ease-in-out;
+
+    @include respond(tab-port) {
+      // height: 60%;
+      // width: 60%;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    max-width: 100px;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    background-color: #fff;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, calc(50% - var(--padding)));
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-blue);
+    position: relative;
+
+    @include respond(tab-port) {
+      width: 59.5%;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 25%;
+      background: url("./images/pattern-quotes.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: translateY(-50%);
+      
+      @include respond(tab-port){
+          left: -25%;
+      }
+    }
+  }
+
+  &__para {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+
+    @include respond(tab-port){
+        text-align: left;
+    }
+    @include respond(tab-land) {
+      font-size: 3.5rem;
+    }
+    @include respond(big-desktop) {
+      font-size: 7.5rem;
+    }
+  }
+
+  &__user-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 3.5rem;
-    // margin: 5rem 1rem;
+    font-size: 1.6rem;
 
-    &__img-box{
-        background: url("./images/pattern-bg.svg");
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: flex;
-        padding: var(--padding);
-        position: relative;
-        margin-bottom: 5rem;
+    @include respond(tab-port) {
+      flex-direction: row;
+      font-size: 2.25rem;
+      align-items: baseline;
     }
-    
-    &__img{
-        height: 100%;
-        width: 100%;
-        object-fit: scale-down;
-        border-radius: .5rem;
-        animation: slideIn 2s ease-in-out;
-    }
+  }
 
-    &__controls{
-        position: absolute;
-        z-index: 9;
-        display: flex;
-        justify-content: space-between;
-        width: 30%;
-        padding: 1rem 2rem;
-        border-radius: 5rem;
-        background-color: #fff;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, calc(50% - var(--padding)));
+  @include respond(tab-port) {
+    &__user {
+      margin-right: 1rem;
     }
+  }
 
-    &__summary{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: var(--dark-blue);
-        position: relative;
+  &__position {
+    font-weight: 400;
+    color: var(--gray-blue);
 
-        &::after{
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 25%;
-            background: url("./images/pattern-quotes.svg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            transform: translateY(-50%);
-        }
+    @include respond(tab-port) {
     }
-
-    &__para{
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-        position: relative;
-    }
-
-    &__user-box{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__position{
-        font-size: 1.6rem;
-        font-weight: 400;
-        color: var(--gray-blue);
-    }
+  }
 }
 
-@keyframes slideIn{
-    from{
-        transform: translateX(100%);
-    }
-    to{
-        transform: translateX(0%);
-    }
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
+.attribution {
+  position: absolute;
+  font-size: 1.6rem;
+  text-align: center;
+  bottom: 1rem;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
