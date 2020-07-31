@@ -204,6 +204,7 @@ body {
     text-align: center;
     font-size: 3rem;
     margin-bottom: 1.5rem;
+    font-weight: 300;
     position: relative;
     
     @include respond(tab-port){
@@ -231,14 +232,17 @@ body {
     }
   }
 
-  @include respond(tab-port) {
-    &__user {
-      margin-right: 1rem;
-    }
+  &__user{
+      font-weight: 700;
+      @include respond(tab-port) {
+          margin-right: 1rem;
+      
+  }
+
   }
 
   &__position {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 2rem;
     color: var(--gray-blue);
 

@@ -253,6 +253,7 @@ body {
   text-align: center;
   font-size: 3rem;
   margin-bottom: 1.5rem;
+  font-weight: 300;
   position: relative;
 }
 
@@ -302,6 +303,10 @@ body {
   }
 }
 
+.testi__user {
+  font-weight: 700;
+}
+
 @media only screen and (min-width: 56.2em) {
   .testi__user {
     margin-right: 1rem;
@@ -309,7 +314,7 @@ body {
 }
 
 .testi__position {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 2rem;
   color: var(--gray-blue);
 }
